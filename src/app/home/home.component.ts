@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ServersService } from '../servers/servers.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,8 +11,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {}
 
-  onLoadServer() {
-    // this.serverService.getServers();
+  onLoadServers() {
     this.router.navigate(['/servers']);
+  }
+  onLoadServer(id: number) {
+    this.router.navigate(['/servers', id, 'edit'], {
+      queryParams: { allowEdit: 1 },
+      fragment: 'loading',
+    });
   }
 }
